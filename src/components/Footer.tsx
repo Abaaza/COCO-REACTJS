@@ -44,8 +44,7 @@ const Footer = () => {
       py={10}
       mt={10}
       color="white"
-      bg="#36322f"
-      backgroundImage={`url(${navbarbackground})`} // Set the background image
+      bg="#1e1d18"
       backgroundSize="cover" // Ensure the image covers the entire background
       backgroundPosition="center" // Center the background image
       backgroundRepeat="no-repeat" // Prevent the image from repeating

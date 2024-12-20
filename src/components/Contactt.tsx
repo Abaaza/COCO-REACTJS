@@ -76,36 +76,37 @@ const Contact: React.FC = () => {
   });
 
   return (
-    <Box>
+    <Box
+      p={{ base: 4, md: 10 }}
+      bgGradient="linear(to-b, gray.100, white)"
+      minHeight="100vh"
+    >
       {/* Two square images with a vertical divider */}
       <Grid
+        maxW="1200px"
+        mx="auto"
         templateColumns={gridTemplateColumns}
-        gap={6}
+        gap={8}
         alignItems="stretch"
         justifyItems="center"
-        mt={10}
-        px={{ base: 4, md: 16 }}
+        px={{ base: 0, md: 8 }}
       >
-        {/* First Image and Text */}
+        {/* Left Column */}
         <GridItem display="flex" justifyContent="center" alignSelf="stretch">
           <VStack
-            spacing={4}
+            spacing={6}
             align="center"
             justifyContent="space-between"
             h="100%"
+            bg="white"
+            p={{ base: 4, md: 8 }}
+            borderRadius="md"
+            boxShadow="sm"
           >
-            <Image
-              src={leftpicture}
-              alt="First Image"
-              boxSize={imageSize}
-              width={imageSize}
-              height={imageSize}
-              objectFit="cover"
-            />
             <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
               {t("Come Dine with Us")}
             </Text>
-            <VStack spacing={2} align="center">
+            <VStack spacing={2} align="center" color="gray.700">
               <Text fontSize={fontSize}>{t("Almaza City Center")}</Text>
               <Text fontSize={fontSize}>{t("Cairo Festival City")}</Text>
               <Text fontSize={fontSize}>{t("River Walk")}</Text>
@@ -113,10 +114,18 @@ const Contact: React.FC = () => {
               <Text fontSize={fontSize}>{t("Arkan Plaza")}</Text>
               <Text fontSize={fontSize}>{t("Madinaty Open Air Mall")}</Text>
             </VStack>
+            <Image
+              src={leftpicture}
+              alt="First Image"
+              boxSize={imageSize}
+              objectFit="cover"
+              borderRadius="md"
+              transition="transform 0.3s"
+              _hover={{ transform: "scale(1.05)" }}
+            />
           </VStack>
         </GridItem>
 
-        {/* Vertical Divider (shown only on larger screens) */}
         {useBreakpointValue({
           base: null,
           md: (
@@ -124,65 +133,67 @@ const Contact: React.FC = () => {
               display="flex"
               justifyContent="center"
               alignSelf="stretch"
-            >
-              <Divider
-                orientation="vertical"
-                borderColor="gray.300"
-                height="60%"
-              />
-            </GridItem>
+            ></GridItem>
           ),
         })}
 
-        {/* Second Image and Text */}
+        {/* Right Column */}
         <GridItem display="flex" justifyContent="center" alignSelf="stretch">
           <VStack
-            spacing={4}
+            spacing={6}
             align="center"
             justifyContent="space-between"
             h="100%"
+            bg="white"
+            p={{ base: 4, md: 8 }}
+            borderRadius="md"
+            boxShadow="sm"
           >
+            <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
+              {t("Opening Hours")}
+            </Text>
+            <VStack spacing={2} align="center" color="gray.700">
+              <Text fontSize={fontSize}>{t("Sat-Wed")}</Text>
+              <Text fontSize={fontSize}>{t("10am - 12pm")}</Text>
+              <Text fontSize={fontSize}>&nbsp;</Text>
+              <Text fontSize={fontSize}>{t("Thu & Fri")}</Text>
+              <Text fontSize={fontSize}>{t("10am - 1am​")}</Text>
+              <Text fontSize={fontSize}>&nbsp;</Text>
+            </VStack>
             <Image
               src={rightpicture}
               alt="Second Image"
               boxSize={imageSize}
-              width={imageSize}
-              height={imageSize}
               objectFit="cover"
+              borderRadius="md"
+              transition="transform 0.3s"
+              _hover={{ transform: "scale(1.05)" }}
             />
-            <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
-              {t("Opening Hours")}
-            </Text>
-            <VStack spacing={2} align="center">
-              <Text fontSize={fontSize}>{t("Sat-Wed")}</Text>
-              <Text fontSize={fontSize}>{t("10am - 12pm")}</Text>
-              <Text fontSize={fontSize}>{t("  ")}</Text>
-              <Text fontSize={fontSize}>{t("Thu & Fri")}</Text>
-              <Text fontSize={fontSize}>{t("10am - 1am​")}</Text>
-              <Text fontSize={fontSize}>{t("  ")}</Text>
-            </VStack>
           </VStack>
         </GridItem>
       </Grid>
 
-      <Box display="flex" justifyContent="center" alignItems="center" mt={50}>
-        <Divider orientation="horizontal" borderColor="gray.300" width="90%" />
-      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        mt={50}
+      ></Box>
       {/* Contact Form */}
       <Box p={5} textAlign="center">
-        <Heading as="h1" mb={4}>
+        <Heading as="h1" mb={4} color="black">
           {t("privateOccasionsHeading")} {/* Translated heading */}
         </Heading>
-        <Text>
+        <Text color="black">
           {t("privateOccasionsText")} {/* Translated text */}
         </Text>
 
         <Box mt={10} width="85%" mx="auto">
-          <Heading as="h2" size="lg" mb={4} textAlign="center">
+          <Heading as="h2" size="lg" mb={4} textAlign="center" color="black">
             {t("contactUs")}
           </Heading>
           <VStack spacing={4} align="stretch" textAlign="center">
-            <FormControl id="name">
+            <FormControl id="name" color="black">
               <FormLabel>{t("nameLabel")}</FormLabel>
               <Input
                 placeholder={t("namePlaceholder")}
@@ -191,7 +202,7 @@ const Contact: React.FC = () => {
               />
             </FormControl>
 
-            <FormControl id="email">
+            <FormControl id="email" color="black">
               <FormLabel>{t("emailLabel")}</FormLabel>
               <Input
                 type="email"
@@ -201,7 +212,7 @@ const Contact: React.FC = () => {
               />
             </FormControl>
 
-            <FormControl id="comment">
+            <FormControl id="comment" color="black">
               <FormLabel>{t("commentLabel")}</FormLabel>
               <Textarea
                 placeholder={t("commentPlaceholder")}

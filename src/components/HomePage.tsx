@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Divider,
   Grid,
   GridItem,
   Image,
@@ -26,25 +25,21 @@ const HomePage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Array of slideshow images
   const imagesToShow = [image1, image7, image9, image5, image8, image2, image4];
 
-  // Dynamically adjust the grid layout for mobile and larger screens
   const gridTemplateColumns = useBreakpointValue({
-    base: "1fr", // Single column layout for mobile
-    md: "1fr auto 1fr", // Two equal columns with an auto-sized divider in between
+    base: "1fr",
+    md: "1fr auto 1fr",
   });
 
-  // Adjust image size and alignment for mobile and larger screens
   const imageSize = useBreakpointValue({
-    base: "100vw", // Force the image to be 85% of the viewport width for mobile
-    md: "500px", // Larger image size for desktop
+    base: "90vw",
+    md: "400px",
   });
 
-  // Adjust font sizes for mobile and desktop
   const fontSize = useBreakpointValue({
-    base: "s", // Smaller font size for mobile
-    md: "l", // Larger font size for desktop
+    base: "md",
+    md: "lg",
   });
 
   const goToProductGrid = () => {
@@ -52,41 +47,59 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Box p={5}>
-      {/* AutoSlideShow Component for images */}
-      <Box onClick={goToProductGrid} cursor="pointer">
+    <Box
+      p={{ base: 4, md: 10 }}
+      bgGradient="linear(to-b, gray.100, white)"
+      minHeight="100vh"
+    >
+      {/* Slideshow Section */}
+      <Box
+        maxW="1200px"
+        mx="auto"
+        onClick={goToProductGrid}
+        cursor="pointer"
+        mb={{ base: 0, md: 5 }}
+        boxShadow="md"
+        borderRadius="md"
+        overflow="hidden"
+        _hover={{ transform: "scale(1.02)" }}
+      >
         <AutoSlideShow images={imagesToShow} />
       </Box>
-      <Box display="flex" justifyContent="center" alignItems="center" mt={50}>
-        <Divider orientation="horizontal" borderColor="gray.300" width="90%" />
-      </Box>
-      {/* Two square images with a vertical divider */}
+
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        mb={{ base: 8, md: 12 }}
+      ></Box>
+
+      {/* Two-Column Section */}
       <Grid
+        maxW="1200px"
+        mx="auto"
         templateColumns={gridTemplateColumns}
-        gap={6}
-        alignItems="stretch" // Ensure both columns stretch to the same height
+        gap={8}
+        alignItems="stretch"
         justifyItems="center"
-        mt={10}
-        px={{ base: 0, md: 16 }} // Add padding on the left and right for both mobile and desktop
+        px={{ base: 0, md: 8 }}
       >
-        {/* First Image and Text */}
+        {/* Left Column */}
         <GridItem display="flex" justifyContent="center" alignSelf="stretch">
           <VStack
-            spacing={4}
+            spacing={6}
             align="center"
-            justifyContent="space-between" // Ensures even spacing between image and text
+            justifyContent="space-between"
             h="100%"
+            bg="white"
+            p={{ base: 4, md: 8 }}
+            borderRadius="md"
+            boxShadow="sm"
           >
-            <Image
-              src={leftpicture}
-              alt="First Image"
-              boxSize={imageSize}
-              objectFit="cover"
-            />
             <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
               {t("Come Dine with Us")}
             </Text>
-            <VStack spacing={2} align="center">
+            <VStack spacing={2} align="center" color="gray.700">
               <Text fontSize={fontSize}>{t("Almaza City Center")}</Text>
               <Text fontSize={fontSize}>{t("Cairo Festival City")}</Text>
               <Text fontSize={fontSize}>{t("River Walk")}</Text>
@@ -94,10 +107,18 @@ const HomePage: React.FC = () => {
               <Text fontSize={fontSize}>{t("Arkan Plaza")}</Text>
               <Text fontSize={fontSize}>{t("Madinaty Open Air Mall")}</Text>
             </VStack>
+            <Image
+              src={leftpicture}
+              alt="First Image"
+              boxSize={imageSize}
+              objectFit="cover"
+              borderRadius="md"
+              transition="transform 0.3s"
+              _hover={{ transform: "scale(1.05)" }}
+            />
           </VStack>
         </GridItem>
 
-        {/* Vertical Divider (shown only on larger screens) */}
         {useBreakpointValue({
           base: null,
           md: (
@@ -105,41 +126,42 @@ const HomePage: React.FC = () => {
               display="flex"
               justifyContent="center"
               alignSelf="stretch"
-            >
-              <Divider
-                orientation="vertical"
-                borderColor="gray.300"
-                height="100%" // Stretch divider to full height of grid
-              />
-            </GridItem>
+            ></GridItem>
           ),
         })}
 
-        {/* Second Image and Text */}
+        {/* Right Column */}
         <GridItem display="flex" justifyContent="center" alignSelf="stretch">
           <VStack
-            spacing={4}
+            spacing={6}
             align="center"
             justifyContent="space-between"
             h="100%"
+            bg="white"
+            p={{ base: 4, md: 8 }}
+            borderRadius="md"
+            boxShadow="sm"
           >
+            <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
+              {t("Opening Hours")}
+            </Text>
+            <VStack spacing={2} align="center" color="gray.700">
+              <Text fontSize={fontSize}>{t("Sat-Wed")}</Text>
+              <Text fontSize={fontSize}>{t("10am - 12pm")}</Text>
+              <Text fontSize={fontSize}>&nbsp;</Text>
+              <Text fontSize={fontSize}>{t("Thu & Fri")}</Text>
+              <Text fontSize={fontSize}>{t("10am - 1am​")}</Text>
+              <Text fontSize={fontSize}>&nbsp;</Text>
+            </VStack>
             <Image
               src={rightpicture}
               alt="Second Image"
               boxSize={imageSize}
               objectFit="cover"
+              borderRadius="md"
+              transition="transform 0.3s"
+              _hover={{ transform: "scale(1.05)" }}
             />
-            <Text fontSize="xl" fontWeight="bold" color="#d3ad62">
-              {t("Opening Hours")}
-            </Text>
-            <VStack spacing={2} align="center">
-              <Text fontSize={fontSize}>{t("Sat-Wed")}</Text>
-              <Text fontSize={fontSize}>{t("10am - 12pm")}</Text>
-              <Text fontSize={fontSize}>{t("  ")}</Text>
-              <Text fontSize={fontSize}>{t("Thu & Fri")}</Text>
-              <Text fontSize={fontSize}>{t("10am - 1am​")}</Text>
-              <Text fontSize={fontSize}>{t("  ")}</Text>
-            </VStack>
           </VStack>
         </GridItem>
       </Grid>

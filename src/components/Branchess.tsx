@@ -69,11 +69,15 @@ const Branches: React.FC = () => {
   const { t } = useTranslation(); // Hook to get translation function
 
   return (
-    <Box p={5}>
-      <Heading as="h1" mb={4} textAlign="center">
+    <Box
+      p={{ base: 4, md: 10 }}
+      bgGradient="linear(to-b, gray.100, white)"
+      minHeight="100vh"
+    >
+      <Heading as="h1" mb={4} textAlign="center" color="black">
         {t("Our Branches")} {/* Translated */}
       </Heading>
-      <Text mb={6} textAlign="center">
+      <Text mb={6} textAlign="center" color="black">
         {t(
           "Explore our branches located in Egypt. Visit us at any of these locations!"
         )}{" "}
@@ -99,7 +103,7 @@ const Branches: React.FC = () => {
                 objectFit="cover" // Ensures the image covers the container without distortion
               />
             </Box>
-            <Heading as="h3" size="md" mb={2}>
+            <Heading as="h3" size="md" mb={2} color="black">
               {t(branch.name)} {/* Translated */}
             </Heading>
             <Stack
@@ -111,11 +115,11 @@ const Branches: React.FC = () => {
               <Link href={branch.mapUrl} isExternal>
                 <Icon as={FaMapMarkerAlt} color="red.500" cursor="pointer" />
               </Link>
-              <Text fontWeight="bold">
+              <Text fontWeight="bold" color="black">
                 {t(branch.location)} {/* Translated */}
               </Text>
             </Stack>
-            <Text>
+            <Text color="black">
               {t(branch.address)} {/* Translated */}
             </Text>
           </GridItem>
