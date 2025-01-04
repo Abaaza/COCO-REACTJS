@@ -222,8 +222,9 @@ const Contact: React.FC = () => {
             </FormControl>
 
             <Button
-              colorScheme="teal"
-              size="lg"
+              color="white"
+              bg="#d3ad62"
+              size="md"
               alignSelf="center"
               onClick={handleSubmit}
             >
